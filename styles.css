@@ -28,3 +28,37 @@
 #title {
 	text-align: center;
 }
+
+input {
+	position: relative;
+	margin-left: 50%;
+	transform: translateX(-50%);
+
+}
+
+#winningText {
+	text-align: center;
+	visibility: hidden;
+	
+}
+.winCol {
+	animation-direction: alternate;
+	animation-name: color-change;
+	animation-duration: 2s;
+	animation-iteration-count: infinite;
+}
+
+@keyframes color-change {
+	0% {
+	  color: red;
+	}
+	33% {
+		color: orange;
+	}
+	66% {
+		color: purple;
+	}
+	100% {
+	  color: blue;
+	}
+  }
