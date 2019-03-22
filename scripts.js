@@ -112,20 +112,31 @@ $(document).ready(function(){
 		if (document.getElementById(currID).innerHTML==""){
 			if(xo==true){
 				document.getElementById(currID).innerHTML = "<p>X</p>";
-				gameBoard.squarsArray[yVal][xVal] = 1;
+				document.getElementById(currID).classList.add("X");
+				gameBoard.squarsArray[xVal][yVal] = 1;
 				xo=!xo;
 			} else if (xo == false){
 				document.getElementById(currID).innerHTML = "<p>O</p>";
-				gameBoard.squarsArray[yVal][xVal] = - 1;
+				document.getElementById(currID).classList.add("O");
+				gameBoard.squarsArray[xVal][yVal] = - 1;
 				xo=!xo;
 			}
+		}
+
+		{
 			//win stuff here
 			let [end, winner] = gameBoard.winCheck();
 			if (end) {
-				alert(winner + " has won the game");
-				reset();
+				//alert(winner + " has won the game");
+				document.getElementById("winningText").textContent = winner + " has won the game!";
+				document.getElementById("winningText").style.visibility = "visible";
+				let winList = document.getElementsByClassName(winner);
+
+				for (let item of winList) {
+					item.firstChild.classList.add("winCol");
+					}
+				}
 			}
-		}
 	});
 });
 
@@ -139,5 +150,13 @@ function reset() {
 
 	for(i=1;i<10;i++){
 		document.getElementById("c"+i).innerHTML="";
+	}
+
+	let resetList = document.getElementsByClassName("box");
+
+	for(let item of resetList){
+		item.classList.remove("winCol");
+		item.classList.remove("X");
+		item.classList.remove("O");
 	}
 }
